@@ -29,7 +29,7 @@ public class Contact extends AuditModel {
 	@Column(name = "last_name", nullable = true)
 	private String lastName;
 
-	@Column(name = "phone_number", nullable = false)
+	@Column(name = "phone_number", unique = true, nullable = false)
 	private String phoneNumber;
 
 	public Contact() {
