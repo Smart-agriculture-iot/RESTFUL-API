@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler", "fieldHandler" })
@@ -18,6 +20,7 @@ public class Sensor extends AuditModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
+	@JsonIgnore
 	private Long id;
 
 	@Column(name = "temperature", nullable = true)
