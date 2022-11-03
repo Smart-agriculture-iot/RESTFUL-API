@@ -13,6 +13,7 @@ import com.cse.api.repository.SensorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,19 +31,19 @@ public class SensorController {
   private SensorRepository sensorRepository;
   // @Autowired
   // Sensor sensor;
- 
+  @CrossOrigin(origins = "*")
   @PostMapping("/send")
   public Sensor createdata(@Valid @RequestBody Sensor sensor) throws ResourceNotFoundException {
     return sensorRepository.save(sensor);
   }
-
+  @CrossOrigin(origins = "*")
   @GetMapping("/retrieve")
   public List<Sensor> getAllData() {
     return sensorRepository.findAll();
   }  
 
 
-
+  @CrossOrigin(origins = "*")
   @GetMapping("/sensordata/{humidity}/{temperature}/{soilmoisture}")
   public Sensor saveheader(
       @PathVariable(value = "humidity") String humidity,@PathVariable(value = "temperature") String temperature,@PathVariable(value = "soilmoisture") String soilmoisture){
@@ -53,7 +54,7 @@ public class SensorController {
         
         return sensorRepository.save(sensor);
       }
-
+      @CrossOrigin(origins = "*")
       @GetMapping("/cleardata")
       public String clearAllData() {
         sensorRepository.deleteAll();
