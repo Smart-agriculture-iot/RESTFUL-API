@@ -43,7 +43,7 @@ public class SensorController {
 
 
 
-  @PostMapping("/sensordata/{humidity}/{temperature}/{soilmoisture}")
+  @GetMapping("/sensordata/{humidity}/{temperature}/{soilmoisture}")
   public Sensor saveheader(
       @PathVariable(value = "humidity") String humidity,@PathVariable(value = "temperature") String temperature,@PathVariable(value = "soilmoisture") String soilmoisture){
         Sensor sensor=new Sensor();
