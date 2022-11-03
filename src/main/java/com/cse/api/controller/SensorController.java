@@ -53,5 +53,11 @@ public class SensorController {
         
         return sensorRepository.save(sensor);
       }
+
+      @GetMapping("/cleardata")
+      public String clearAllData() {
+        sensorRepository.deleteAll();
+        return "Database cleaned successfully";
+      }  
  
 };
