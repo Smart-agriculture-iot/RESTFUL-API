@@ -28,7 +28,8 @@ public class SensorController {
 
   @Autowired
   private SensorRepository sensorRepository;
-  
+  // @Autowired
+  // Sensor sensor;
  
   @PostMapping("/send")
   public Sensor createdata(@Valid @RequestBody Sensor sensor) throws ResourceNotFoundException {
@@ -39,4 +40,18 @@ public class SensorController {
   public List<Sensor> getAllData() {
     return sensorRepository.findAll();
   }  
+
+
+
+  @PostMapping("/sensordata/{humidity}/{temperature}/{soilmoisture}")
+  public Sensor saveheader(
+      @PathVariable(value = "humidity") String humidity,@PathVariable(value = "temperature") String temperature,@PathVariable(value = "soilmoisture") String soilmoisture){
+        Sensor sensor=new Sensor();
+        sensor.sethumidity(humidity);
+        sensor.setsoilmoisture(soilmoisture);
+        sensor.settemperature(temperature);
+        
+        return sensorRepository.save(sensor);
+      }
+ 
 };
