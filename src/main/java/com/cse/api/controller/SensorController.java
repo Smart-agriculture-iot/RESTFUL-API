@@ -18,19 +18,18 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1")
 public class SensorController {
 
   @Autowired
   private SensorRepository sensorRepository;
-  // @Autowired
-  // Sensor sensor;
+  
   @CrossOrigin(origins = "*")
   @PostMapping("/send")
   public Sensor createdata(@Valid @RequestBody Sensor sensor) throws ResourceNotFoundException {

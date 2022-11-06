@@ -18,11 +18,18 @@ public class CSEApplication {
 	@Configuration
 	public class CorsConfig implements WebMvcConfigurer {
 
+		// @Override
+		// public void addCorsMappings(CorsRegistry registry) {
+
+		// 	registry.addMapping("/**").allowedOrigins("/**").allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
+		// 			.allowCredentials(true);
+		// }
+
+
+
 		@Override
 		public void addCorsMappings(CorsRegistry registry) {
-
-			registry.addMapping("/**").allowedOrigins("/**").allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
-					.allowCredentials(true);
+			registry.addMapping("/**");
 		}
 
 	}
