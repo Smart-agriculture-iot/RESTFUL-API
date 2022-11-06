@@ -47,6 +47,7 @@ public class SensorController {
   public Sensor saveheader(
       @PathVariable(value = "humidity") String humidity,@PathVariable(value = "temperature") String temperature,@PathVariable(value = "soilmoisture") String soilmoisture){
         Sensor sensor=new Sensor();
+
         sensor.sethumidity(humidity);
         sensor.setsoilmoisture(soilmoisture);
         sensor.settemperature(temperature);
@@ -60,4 +61,11 @@ public class SensorController {
         return "Database cleaned successfully";
       }  
  
+
+      @CrossOrigin(origins = "*")
+      @GetMapping("/latest")
+      public Sensor getLatestData() {
+        
+        return sensorRepository.findTopByOrderByIdDesc();
+      }  
 };

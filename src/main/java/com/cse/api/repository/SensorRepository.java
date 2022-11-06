@@ -8,4 +8,6 @@ import com.cse.api.model.Sensor;
 @Repository
 public interface SensorRepository extends JpaRepository<Sensor, Long> {
 	Sensor findById(String contactId);
+
+    Sensor findTopByOrderByIdDesc();
 }
