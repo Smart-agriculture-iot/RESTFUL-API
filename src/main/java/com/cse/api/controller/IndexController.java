@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
     @GetMapping("/")
     public String index() {
-        return "Welcome to cse api.";
+        return "Welcome to Hinga Wizeye.";
     }
 }

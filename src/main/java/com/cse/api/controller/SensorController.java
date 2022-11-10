@@ -7,7 +7,9 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.xml.transform.Templates;
 
+import com.cse.api.Response.CommonResponse;
 import com.cse.api.exception.ResourceNotFoundException;
+import com.cse.api.model.Rain;
 import com.cse.api.model.Sensor;
 import com.cse.api.repository.SensorRepository;
 
@@ -20,13 +22,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.cse.api.repository.RainRepository;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1")
 public class SensorController {
-
+  @Autowired
+  RainRepository rainRepository;
+  
   @Autowired
   private SensorRepository sensorRepository;
   
@@ -67,5 +72,11 @@ public class SensorController {
       public Sensor getLatestData() {
         
         return sensorRepository.findTopByOrderByIdDesc();
-      }  
+      }
+      
+      
+    
+
+
+
 };
