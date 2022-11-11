@@ -6,8 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,7 +44,7 @@ import com.cse.api.Response.CommonResponse;
 import  com.cse.api.helper.ExcelHelper;
 import com.cse.api.model.Rain;
 import com.cse.api.repository.RainRepository;
-import com.cse.api.service.ExcelService;
+// import com.cse.api.service.ExcelService;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,31 +54,31 @@ import org.springframework.web.multipart.MultipartFile;
 public class MetadataController {
 
    
-    @Autowired
-    ExcelService excelService;
+    // @Autowired
+    // ExcelService excelService;
     @Autowired
     RainRepository rainRepository;
     
-    @PostMapping("/upload")
-    public ResponseEntity<CommonResponse> uploadFile(@RequestParam("file")MultipartFile file){
-        if(ExcelHelper.hasExcelFormat(file)){
-            try{
-                excelService.save(file);
-                String message = "Uploaded the file successfully: " + file.getOriginalFilename();
-                return ResponseEntity.status(HttpStatus.OK).body(new CommonResponse("success", message));
-            } 
+    // @PostMapping("/upload")
+    // public ResponseEntity<CommonResponse> uploadFile(@RequestParam("file")MultipartFile file){
+    //     if(ExcelHelper.hasExcelFormat(file)){
+    //         try{
+    //             excelService.save(file);
+    //             String message = "Uploaded the file successfully: " + file.getOriginalFilename();
+    //             return ResponseEntity.status(HttpStatus.OK).body(new CommonResponse("success", message));
+    //         } 
             
             
-            catch (Exception e){
+    //         catch (Exception e){
             
-                String message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-              e.printStackTrace();
-                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new CommonResponse("failed", message));
-            }
-        }
-        String message = "Please Upload an Excel File";
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CommonResponse("failed", message));
-    }
+    //             String message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+    //           e.printStackTrace();
+    //             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new CommonResponse("failed", message));
+    //         }
+    //     }
+    //     String message = "Please Upload an Excel File";
+    //     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CommonResponse("failed", message));
+    // }
 
     @CrossOrigin(origins = "*")
     @GetMapping("/rain")
@@ -84,6 +86,16 @@ public class MetadataController {
       return rainRepository.findAll();
     }  
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/rainyear/{year}")
+    public Map<String, String> getbyyear(@PathVariable(value = "year") String year) {
+        Map<String, String> data = new HashMap<>();
+       List<Rain>rains=rainRepository.findclientByYear(year);
+       for (final Rain rain: rains) {
+        data.put(rain.getMonth(),rain.getRain());
+    }
+      return data;
+    }  
   
 
     @PostMapping("/rain")
