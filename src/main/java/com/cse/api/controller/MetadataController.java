@@ -43,8 +43,10 @@ import org.springframework.web.client.RestTemplate;
 import com.cse.api.Response.CommonResponse;
 import  com.cse.api.helper.ExcelHelper;
 import com.cse.api.model.Rain;
+import com.cse.api.model.harvest;
 import com.cse.api.repository.RainRepository;
 // import com.cse.api.service.ExcelService;
+import com.cse.api.repository.harvestRepository;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,27 +60,8 @@ public class MetadataController {
     // ExcelService excelService;
     @Autowired
     RainRepository rainRepository;
-    
-    // @PostMapping("/upload")
-    // public ResponseEntity<CommonResponse> uploadFile(@RequestParam("file")MultipartFile file){
-    //     if(ExcelHelper.hasExcelFormat(file)){
-    //         try{
-    //             excelService.save(file);
-    //             String message = "Uploaded the file successfully: " + file.getOriginalFilename();
-    //             return ResponseEntity.status(HttpStatus.OK).body(new CommonResponse("success", message));
-    //         } 
-            
-            
-    //         catch (Exception e){
-            
-    //             String message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-    //           e.printStackTrace();
-    //             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new CommonResponse("failed", message));
-    //         }
-    //     }
-    //     String message = "Please Upload an Excel File";
-    //     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CommonResponse("failed", message));
-    // }
+    @Autowired
+    harvestRepository haRepository;
 
     @CrossOrigin(origins = "*")
     @GetMapping("/rain")
@@ -102,6 +85,19 @@ public class MetadataController {
     public List<Rain> createbBranch(@RequestBody List<Rain> rain) {
         
             return rainRepository.saveAll(rain);
+    }
+
+    @PostMapping("/harvest")
+    public List<harvest> createHarvest(@RequestBody List<harvest> havest) {
+        
+            return haRepository.saveAll(havest);
+    }
+
+
+    @PostMapping("/delete")
+    public String deleatedata() {
+      rainRepository.deleteAll();
+            return "Deleted all data";
     }
 
 }
