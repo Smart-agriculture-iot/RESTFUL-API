@@ -94,6 +94,12 @@ public class MetadataController {
     }
 
 
+    @CrossOrigin(origins = "*")
+    @GetMapping("/harvest")
+    public List<harvest> getAlharvestData() {
+      return haRepository.findAll();
+    }  
+
     @PostMapping("/delete")
     public String deleatedata() {
       rainRepository.deleteAll();
