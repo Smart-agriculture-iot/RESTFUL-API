@@ -43,13 +43,16 @@ public class SensorController {
 
 
 
-  @PostMapping("/sensordata/{humidity}/{temperature}/{soilmoisture}")
+  @PostMapping("/sensordata/{humidity}/{temperature}/{soilmoisture}/{lat}/{lng}/{divicename}")
   public Sensor saveheader(
-      @PathVariable(value = "humidity") String humidity,@PathVariable(value = "temperature") String temperature,@PathVariable(value = "soilmoisture") String soilmoisture){
+      @PathVariable(value = "humidity") String humidity,@PathVariable(value = "temperature") String temperature,@PathVariable(value = "soilmoisture") String soilmoisture,@PathVariable(value = "lat") String lat,@PathVariable(value = "lng") String lng,@PathVariable(value = "devicename") String devicename){
         Sensor sensor=new Sensor();
         sensor.sethumidity(humidity);
         sensor.setsoilmoisture(soilmoisture);
         sensor.settemperature(temperature);
+        sensor.setlong(lng);
+        sensor.setlat(lat);
+        sensor.setdevicename(devicename);
         
         return sensorRepository.save(sensor);
       }
