@@ -30,6 +30,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.cse.api.repository.RainRepository;
 
+
+//SensorController.java
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1")
@@ -66,6 +69,7 @@ harvestRepository harvestRepository;
         
         return sensorRepository.save(sensor);
       }
+
       @CrossOrigin(origins = "*")
       @GetMapping("/cleardata")
       public String clearAllData() {
@@ -110,5 +114,29 @@ harvestRepository harvestRepository;
     
 
 
+      @GetMapping("/sensordata")
+      public Sensor handleRequest(
+              @RequestParam("temperature") String temperature,
+              @RequestParam("humidity") String humidity,
+              @RequestParam("soilmoisture") String soilmoisture,
+              @RequestParam("iSraining") int iSraining,
+              @RequestParam("serialNumber") String serialNumber,
+              @RequestParam("longtitude") String longtitude,
+              @RequestParam("latitude") String latitude
+              ) {
+  
+                Sensor sensor=new Sensor();
 
+                sensor.sethumidity(humidity);
+                sensor.setsoilmoisture(soilmoisture);
+                sensor.settemperature(temperature);
+                sensor.setiSraining(iSraining);
+                sensor.setserialNumber(serialNumber);
+                sensor.setlatitude(latitude);
+                sensor.setlongtitude(longtitude);
+                
+                return sensorRepository.save(sensor);
+  
+      
+      }
 };

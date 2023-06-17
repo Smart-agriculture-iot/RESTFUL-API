@@ -26,11 +26,24 @@ public class Sensor extends AuditModel {
 	@Column(name = "temperature", nullable = true)
 	private String temperature;
 
-	@Column(name = "humidity", nullable = false)
+	@Column(name = "humidity", nullable = true)
 	private String humidity;
 
 	@Column(name = "soilmoisture", nullable = true)
 	private String soilmoisture;
+
+	@Column(name = "iSraining", nullable = true)
+	private Integer iSraining;
+
+	@Column(name = "serialNumber", nullable = true)
+	private String serialNumber;
+
+	@Column(name = "longtitude", nullable = true)
+	private String longtitude;
+
+	@Column(name = "latitude", nullable = true)
+	private String latitude;
+
 
 	public Sensor() {
 		super();
@@ -76,4 +89,41 @@ public class Sensor extends AuditModel {
 	}
 
 
+	public void setiSraining(Integer iSraining) {
+		this.iSraining = iSraining;
+	}
+
+	public Integer getiSraining() {
+		return iSraining;
+	}
+
+
+	public void setserialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+
+	public String getserialNumber() {
+		return serialNumber;
+	}
+//
+	public void setlongtitude(String longtitude) {
+		this.longtitude = longtitude;
+	}
+
+	public String getlongtitude() {
+		return longtitude;
+	}
+	
+//
+
+	public void setlatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getlatitude() {
+		return latitude;
+	}
+
+
+	
 }
