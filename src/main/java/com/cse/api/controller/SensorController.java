@@ -122,7 +122,9 @@ harvestRepository harvestRepository;
               @RequestParam("iSraining") int iSraining,
               @RequestParam("serialNumber") String serialNumber,
               @RequestParam("longtitude") String longtitude,
-              @RequestParam("latitude") String latitude
+              @RequestParam("latitude") String latitude,
+              @RequestParam("latitude") String voltage
+        
               ) {
   
                 Sensor sensor=new Sensor();
@@ -134,6 +136,7 @@ harvestRepository harvestRepository;
                 sensor.setserialNumber(serialNumber);
                 sensor.setlatitude(latitude);
                 sensor.setlongtitude(longtitude);
+                 sensor.setvoltage(voltage);
                 
                 return sensorRepository.save(sensor);
   
