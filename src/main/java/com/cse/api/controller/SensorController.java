@@ -123,7 +123,7 @@ harvestRepository harvestRepository;
               @RequestParam("serialNumber") String serialNumber,
               @RequestParam("longtitude") String longtitude,
               @RequestParam("latitude") String latitude,
-              @RequestParam("latitude") String voltage
+              @RequestParam("voltage") String voltage
         
               ) {
   
