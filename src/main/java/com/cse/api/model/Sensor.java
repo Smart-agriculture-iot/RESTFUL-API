@@ -43,6 +43,9 @@ public class Sensor extends AuditModel {
 
 	@Column(name = "latitude", nullable = true)
 	private String latitude;
+	
+       @Column(name = "voltage", nullable = true)
+	private String voltage;
 
 
 	public Sensor() {
@@ -123,7 +126,14 @@ public class Sensor extends AuditModel {
 	public String getlatitude() {
 		return latitude;
 	}
+//
+	public void setvoltage(String voltage) {
+		this.voltage = voltage;
+	}
 
+	public String getvoltage() {
+		return voltage;
+	}
 
 	
 }
